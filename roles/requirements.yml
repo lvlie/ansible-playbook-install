@@ -1,0 +1,19 @@
+---
+- src: robertdebock.users
+  name: users
+
+- src: robertdebock.bootstrap
+  name: bootstrap
+
+- src: robertdebock.core_dependencies
+  name: core_dependencies
+
+- src: robertdebock.python_pip
+  name: python_pip
+
+- src: robertdebock.docker_ce
+  name: docker
+
+- name: docker_compose
+  src: https://github.com/lvlie/ansible-role-docker_compose
+  version: master
