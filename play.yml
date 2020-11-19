@@ -1,11 +1,18 @@
 - name: Install system
-  hosts: all
+  hosts: ubuntu,pi
   gather_facts: min
   become: true
 
   roles:
     - role: bootstrap
     - role: core_dependencies
+
+- name: Manage users ubuntu
+  hosts: ubuntu
+  gather_facts: min
+  become: true
+
+  roles:
     - role: users
       users_group_list:
         - name: leon
@@ -20,6 +27,25 @@
             - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDRulvCyjdI8R7o0z+W433VnN8EwubE0IE5C5fYcv7Aor+ZuijYdOUgI+/ZBLONAJTz/8M1Sc1ODxLoMiY7RUjVsMy4UaF8xGsIMMwexzNOjOw9yOf1PKq2PbzTHZoSyfFHMfEBCQ2JhDW+1JDJmM+G+BP1itJWLO4BQRdI8hbun04joFfCQV84cfJNGyu6zbWxcYichsBYjq67UwbDOW+HQ0EAbkA7GqZFOln4VykDbvHLWs0kbYd1RNI0FbpyqkFwuV75M73GtXJb9nvrzzvDLrqbpTRp2yG5i4IMMnRc8vYn+LnLrnJCUEGEM/gnyJ40RgIZ8LxaUfaUszVk6RcJ"
           expires: -1
 
+- name: Manage users pi
+  hosts: pi
+  gather_facts: min
+  become: true
+
+  roles:
+    - role: users
+      users_group_list:
+        - name: pi
+          gid: 1000
+      users_user_list:
+        - name: pi
+          comment: Leon
+          uid: 1000
+          group: pi
+          sudo_options: "ALL=(ALL) NOPASSWD: ALL"
+          authorized_keys:
+            - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDRulvCyjdI8R7o0z+W433VnN8EwubE0IE5C5fYcv7Aor+ZuijYdOUgI+/ZBLONAJTz/8M1Sc1ODxLoMiY7RUjVsMy4UaF8xGsIMMwexzNOjOw9yOf1PKq2PbzTHZoSyfFHMfEBCQ2JhDW+1JDJmM+G+BP1itJWLO4BQRdI8hbun04joFfCQV84cfJNGyu6zbWxcYichsBYjq67UwbDOW+HQ0EAbkA7GqZFOln4VykDbvHLWs0kbYd1RNI0FbpyqkFwuV75M73GtXJb9nvrzzvDLrqbpTRp2yG5i4IMMnRc8vYn+LnLrnJCUEGEM/gnyJ40RgIZ8LxaUfaUszVk6RcJ"
+          expires: -1
 
 - name: Install system
   hosts: docker
