@@ -19,6 +19,21 @@
           authorized_keys:
             - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDRulvCyjdI8R7o0z+W433VnN8EwubE0IE5C5fYcv7Aor+ZuijYdOUgI+/ZBLONAJTz/8M1Sc1ODxLoMiY7RUjVsMy4UaF8xGsIMMwexzNOjOw9yOf1PKq2PbzTHZoSyfFHMfEBCQ2JhDW+1JDJmM+G+BP1itJWLO4BQRdI8hbun04joFfCQV84cfJNGyu6zbWxcYichsBYjq67UwbDOW+HQ0EAbkA7GqZFOln4VykDbvHLWs0kbYd1RNI0FbpyqkFwuV75M73GtXJb9nvrzzvDLrqbpTRp2yG5i4IMMnRc8vYn+LnLrnJCUEGEM/gnyJ40RgIZ8LxaUfaUszVk6RcJ"
           expires: -1
+
+
+- name: Install system
+  hosts: docker
+  gather_facts: min
+  become: true
+
+  roles:
     - role: python_pip
     - role: docker
+
+- name: Install system
+  hosts: compose
+  gather_facts: min
+  become: true
+
+  roles:
     - role: docker_compose
