@@ -1,6 +1,7 @@
 - name: Install system
   hosts: ubuntu,pi
-  gather_facts: min
+  gather_facts: true
+  gather_subset: min
   become: true
 
   roles:
@@ -9,7 +10,8 @@
 
 - name: Manage users ubuntu
   hosts: ubuntu
-  gather_facts: min
+  gather_facts: true
+  gather_subset: min
   become: true
 
   roles:
@@ -29,7 +31,8 @@
 
 - name: Manage users pi
   hosts: pi
-  gather_facts: min
+  gather_facts: true
+  gather_subset: min
   become: true
 
   roles:
@@ -49,7 +52,8 @@
 
 - name: Install system
   hosts: docker
-  gather_facts: min
+  gather_facts: true
+  gather_subset: min
   become: true
 
   roles:
@@ -58,7 +62,8 @@
 
 - name: Install system
   hosts: compose
-  gather_facts: min
+  gather_facts: true
+  gather_subset: min
   become: true
 
   roles:
